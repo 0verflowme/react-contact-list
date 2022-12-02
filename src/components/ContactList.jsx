@@ -21,7 +21,7 @@ function ContactList(props) {
 
    return (
       <div className='main'>
-         <h2>Contact List
+         <h2 style={{ border: "20px" }}> <Link to="/">Contact List</Link>
             <Link to="/add">
                <button className='ui primary button right floated'>Add Contact</button>
             </Link>
