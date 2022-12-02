@@ -17,7 +17,6 @@ function AddContact(props) {
       props.addContactHandler(User);
       // THIS IS USED FOR WHEN THE ADD BUTTON IS PRESSED THE INPUT FILED AGAIN GETS EMPTY
       setUser({ name: "", email: "", phone: "" });
-      //console.log(props);
       navigate('/');
    }
 

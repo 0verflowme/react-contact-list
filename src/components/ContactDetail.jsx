@@ -1,33 +1,31 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import user from "../assets/user.jpg";
+import {
+   MDBCard,
+   MDBCardBody,
+   MDBCardTitle,
+   MDBCardImage,
+   MDBBtn
+} from 'mdb-react-ui-kit';
 
 const ContactDetail = (props) => {
-   // HERE DUE TO NEW VERSION OF ROUTER useLocation IS USED AND
-   // FROM CONTACTCARD IN LINK IT TOOK STATE AND THEN IT IS PASSED HERE
    let location = useLocation();
    const { name, email, phone } = location.state.contact;
 
    return (
-      <div className="main">
-         <div className="ui center aligned card">
-            <div className="image">
-               <img src={user} alt="user"></img>
-            </div>
-            <div className="content">
-               <div className="header">{name}</div>
-               <div className="description">{email}</div>
-               <div className="description">{phone}</div>
-            </div>
-         </div>
-         <Link to="/edit" state={{ contact: location.state.contact }}>
-            <div className="center div">
-               <button className="ui red button center aligned ">
-                  Edit Contact
-               </button>
-            </div>
-         </Link>
-      </div>
+      <MDBCard style={{ height: "300px", width: "300px", display: "flex" }}>
+         <MDBCardImage src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+            style={{ borderRadius: "50%" }}
+            position='top' alt='...' />
+         <MDBCardBody style={{ minWidth: "300px", display: "flex", flexDirection: "column" }}>
+            <MDBCardTitle style={{ fontWeight: "bold" }}>{name}</MDBCardTitle>
+            <MDBCardTitle >Email: {email}</MDBCardTitle>
+            <MDBCardTitle >Phone: {phone}</MDBCardTitle>
+            <Link to="/edit" state={{ contact: location.state.contact }}>
+               <MDBBtn>Edit Profile</MDBBtn>
+            </Link>
+         </MDBCardBody>
+      </MDBCard>
    );
 };
 

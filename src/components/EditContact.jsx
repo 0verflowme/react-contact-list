@@ -1,29 +1,27 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// HERE ABOVE useHistory IS REPLACED WITH useNavigate 
 
 function EditContact(props) {
 
    const navigate = useNavigate();
    let location = useLocation();
-   const { id, name, email } = location.state.contact;
-   const [User, setUser] = useState({ id, name, email });
+   const { id, name, email, phone } = location.state.contact;
+   const [User, setUser] = useState({ id, name, email, phone });
 
 
 
 
    let update = (e) => {
       e.preventDefault();
-      if (User.name === "" || User.email === "") {
+      if (User.name === "" || User.email === "" || User.phone === "") {
          alert("All fields are mandatory!!!");
          return
       }
       // THIS IS USED TO SHOW THE LIST DATA ON THE APP.JS FILE 
       props.updateContactHandler(User);
       // THIS IS USED FOR WHEN THE ADD BUTTON IS PRESSED THE INPUT FILED AGAIN GETS EMPTY
-      setUser({ name: "", email: "" });
-      //console.log(props);
+      setUser({ name: "", email: "", phone: "" });
       navigate('/');
    }
 
@@ -38,6 +36,10 @@ function EditContact(props) {
             <div className='field'>
                <label>Email</label>
                <input type="text" name="Email" placeholder='Email' value={User.email} onChange={e => setUser({ ...User, email: e.target.value })} />
+            </div>
+            <div className='field'>
+               <label>Phone</label>
+               <input type="number" name="Phone" placeholder='Phone' value={User.phone} onChange={e => setUser({ ...User, phone: e.target.value })} />
             </div>
             <button className='ui orange button'>Update</button>
          </form>

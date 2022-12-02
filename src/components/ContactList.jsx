@@ -3,8 +3,6 @@ import ContactCard from './ContactCard';
 import { Link } from 'react-router-dom';
 
 function ContactList(props) {
-
-   console.log(props);
    const inputEl = useRef("");
 
    const deletContactHandler = (id) => {
@@ -18,7 +16,6 @@ function ContactList(props) {
    })
 
    const getSearchTerm = () => {
-      //console.log(inputEl.current.value);
       props.searchKeyword(inputEl.current.value);
    }
 

@@ -9,30 +9,15 @@ import ContactDetail from "./ContactDetail";
 import api from "../api/contacts";
 import EditContact from "./EditContact";
 
-// USED SEMENTIC UI FOR THIS APPLICATION
+
+// HOOKS
 
 function App() {
-  // const contacts=[
-  //   {
-  //     id: "1",
-  //     "name": "Devanshu",
-  //     "email": "devanshu@gmail.com"
-  //   },
-  //   {
-  //     id: "2",
-  //     "name": "Shreyan",
-  //     "email": "shreyan@gmail.com"
-  //   }
-  // ]
-
-  // NOW WITH THE USE OF HOOKS WE WILL GET THE CONTACTS
-  const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
   const [SearchResults, setSearchResults] = useState([]);
 
   const addContactHandler = async (contact) => {
-    console.log(contact);
     const request = {
       id: uuid(),
       ...contact,
@@ -70,7 +55,6 @@ function App() {
 
   // SEARCH
   const searchHandler = (SearchTerm) => {
-    //console.log(SearchTerm);
     setSearchTerm(SearchTerm);
     if (SearchTerm !== "") {
       const newContactList = contacts.filter((contact) => {
@@ -85,24 +69,13 @@ function App() {
     }
   };
 
-  // WE WILL USE HERE useEffect SO THAT WE CAN STORE THE DATA INSIDE THE LOCAL STORAGE DUE TO THAT DATA
-  // WE ADDED IN LIST WON'T DISAPPEAR
-
   useEffect(() => {
-    // const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    // if (retriveContacts) setContacts(retriveContacts);
     const getAllContacts = async () => {
       const allContacts = await retriveContacts();
-      console.log(allContacts);
       if (allContacts) setContacts(allContacts);
     };
     getAllContacts();
   }, []);
-
-  // FOR STORING THE DATA
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <div className="ui container">
@@ -119,12 +92,10 @@ function App() {
                 searchKeyword={searchHandler}
               />
             }
-          //render={(props)=><ContactList contacts={contacts} getContactId={removeContactHandler} {...props} />}
           />
           <Route
             path="/add"
             element={<AddContact addContactHandler={addContactHandler} />}
-          //render={(props)=><AddContact {...props} addContactHandler={addContactHandler}/>}
           />
           <Route
             path="/edit"
@@ -134,9 +105,6 @@ function App() {
           />
           <Route path="/contact/:id" element={<ContactDetail />} />
         </Routes>
-        {/* <AddContact addContactHandler={addContactHandler}/> */}
-        {/*Here in contact list props are used to get the values in the above contact array*/}
-        {/* <ContactList contacts={contacts} getContactId={removeContactHandler}/> */}
       </Router>
     </div>
   );

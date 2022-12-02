@@ -76,3 +76,8 @@ body {
 .list-group-light .list-group-item {
   border: none
 }
+
+.card {
+  box-shadow: none !important;
+  flex-direction: row;
+}
