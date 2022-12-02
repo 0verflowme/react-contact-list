@@ -17,6 +17,7 @@ function App() {
   const [SearchTerm, setSearchTerm] = useState("");
   const [SearchResults, setSearchResults] = useState([]);
 
+  // ADD CONTACTS
   const addContactHandler = async (contact) => {
     const request = {
       id: uuid(),
@@ -29,7 +30,7 @@ function App() {
   // UPDATE CONTACT
   const updateContactHandler = async (contact) => {
     const response = await api.put(`/users/${contact.id}`, contact);
-    const { id, name, email } = response.data;
+    const { id } = response.data;
     setContacts(
       contacts.map((contact) => {
         return contact.id === id ? { ...response.data } : contact;
