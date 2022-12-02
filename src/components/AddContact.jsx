@@ -9,7 +9,7 @@ function AddContact(props) {
 
    let add = (e) => {
       e.preventDefault();
-      if (User.name === "" || User.email === "") {
+      if (User.name === "" || User.email === "" || User.phone === "") {
          alert("All fields are mandatory!!!");
          return
       }
