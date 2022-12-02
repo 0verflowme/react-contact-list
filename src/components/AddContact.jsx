@@ -13,7 +13,6 @@ function AddContact(props) {
          alert("All fields are mandatory!!!");
          return
       }
-      // THIS IS USED TO SHOW THE LIST DATA ON THE APP.JS FILE 
       props.addContactHandler(User);
       // THIS IS USED FOR WHEN THE ADD BUTTON IS PRESSED THE INPUT FILED AGAIN GETS EMPTY
       setUser({ name: "", email: "", phone: "" });

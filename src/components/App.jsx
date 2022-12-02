@@ -11,7 +11,6 @@ import EditContact from "./EditContact";
 
 
 // HOOKS
-
 function App() {
   const [contacts, setContacts] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
